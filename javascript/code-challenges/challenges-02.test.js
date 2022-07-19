@@ -110,6 +110,8 @@ const evenOdd = (arr) => {
 //Question: My code was returning undefined until a TA suggested I add the return statement on line 98. That fixed the issue
 //but I don't understand why the return statement on line 98 is necessary - I thought map automatically returned an array with
 //the callback function applied?
+//Possible answer: I guess it's because of the multi-line arrow function - map returns an array, but then because it's inside
+//a multi-line arrow function, you do still need the return statement - is that right?
 
 
 /* ------------------------------------------------------------------------------------------------
@@ -154,9 +156,7 @@ const snorlaxAbilities = {
   weight: 4600,
 };
 
-const extractAbilities = (arr) => {
-  // Solution code here...
-};
+const extractAbilities = (arr) => arr.map(elem => elem.ability.name);
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 10 - Stretch Goal
@@ -296,7 +296,7 @@ describe('Testing challenge 8', () => {
   });
 });
 
-xdescribe('Testing challenge 9', () => {
+describe('Testing challenge 9', () => {
   test('It should return an array containing only the ability names', () => {
     expect(extractAbilities(snorlaxAbilities.abilities)).toStrictEqual(['gluttony', 'cute charm', 'immunity']);
     expect(extractAbilities(snorlaxAbilities.abilities).length).toStrictEqual(3);

@@ -95,8 +95,22 @@ For example: evenOdd([1,2,3]) returns ['odd','even','odd'].
 ------------------------------------------------------------------------------------------------ */
 
 const evenOdd = (arr) => {
-  // Solution code here...
+  return arr.map(elem => {
+    if (isNaN(elem)) {
+      return 'N/A';
+    }
+
+    else if (elem % 2 === 0) {
+      return 'even';
+    }
+
+    else return 'odd';
+  });
 };
+//Question: My code was returning undefined until a TA suggested I add the return statement on line 98. That fixed the issue
+//but I don't understand why the return statement on line 98 is necessary - I thought map automatically returned an array with
+//the callback function applied?
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 9 - Stretch Goal
@@ -260,7 +274,7 @@ describe('Testing challenge 7', () => {
   });
 });
 
-xdescribe('Testing challenge 8', () => {
+describe('Testing challenge 8', () => {
   test('It should return an array containing the keys from an object', () => {
     expect(evenOdd([5, 8, 2, 6, 9, 13, 542, 541])).toStrictEqual([ 'odd', 'even', 'even', 'even', 'odd', 'odd', 'even', 'odd' ]);
     expect(evenOdd([5, 8, 2, 6, 9, 13, 542, 541]).length).toStrictEqual(8);

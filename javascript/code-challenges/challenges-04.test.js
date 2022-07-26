@@ -143,9 +143,23 @@ const people = [
   new Person('Stan', 'Seattle', 67),
 ];
 
-const sortPeople = (arr) => {
-  // Solution code here...
-};
+//Probably this is horrible style, but was curious if this could be done in one line - the commented out code right below this also works and is more readable
+const sortPeople = (arr) => arr.sort((a,b) => a.lastName.toUpperCase() < b.lastName.toUpperCase() ? -1 : b.lastName.toUpperCase() < a.lastName.toUpperCase() ? 1 : 0);
+
+/*const sortPeople = (arr) => {
+  return arr.sort((a,b) => {
+    const name1 = a.lastName.toUpperCase();
+    const name2 = b.lastName.toUpperCase();
+
+    if (name1 < name2) {
+      return -1;
+    }
+    if (name2 < name1) {
+      return 1;
+    }
+    return 0;
+  });
+};*/
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 11 - Stretch Goal
@@ -299,7 +313,7 @@ describe('Testing challenge 9', () => {
   });
 });
 
-xdescribe('Testing challenge 10', () => {
+describe('Testing challenge 10', () => {
   test('It should sort people by their last names', () => {
     expect(sortPeople(people)).toStrictEqual([
       new Person('Casey', 'Codefellow', 38),

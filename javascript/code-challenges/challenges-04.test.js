@@ -249,8 +249,26 @@ You DO NOT need to use your solution to Challenge 12 in completing Challenge 13.
 ------------------------------------------------------------------------------------------------ */
 
 const sortSchedule = (arr) => {
-  return arr.sort()
+  //First sort by day of week
+  const newArr = sortMeetingsByDay(arr);
+
+  //Within day of week category, sort by start time
+  return newArr.sort((a,b) => {
+    if (a.dayOfWeek === b.dayOfWeek) {
+      if (a.start !== b.start) {
+        return a.start - b.start;
+      }
+      //If same start time, sort by meeting length
+      return (a.end - a.start) - (b.end - b.start);
+    }
+
+    //If meetings are on different day of week, don't change positions
+    return 1;
+  });
 };
+
+//Question: In the final return statement, it looks like you can return 1 or 0, is that right?
+//Question: I used function from question 12 - is there a way to not do this?
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
@@ -393,7 +411,7 @@ describe('Testing challenge 12', () => {
   });
 });
 
-xdescribe('Testing challenge 13', () => {
+describe('Testing challenge 13', () => {
   test('It should sort meetings by when they happen', () => {
     expect(sortSchedule(meetings)).toStrictEqual([
       new Meeting('Monday', '0900', '0945'),

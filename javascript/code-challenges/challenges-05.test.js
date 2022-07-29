@@ -295,7 +295,14 @@ Write a function named extractChildren that, given the array of characters from 
 ------------------------------------------------------------------------------------------------ */
 
 const extractChildren = (arr) => {
-  // Solution code here...
+  const aChars = arr.filter(char => char.name.toLowerCase().split('').includes('a'));
+  const children = aChars.reduce((acc, curVal) => {
+    if(curVal.children !== undefined) {
+      curVal.children.forEach(child => acc.push(child));
+    }
+    return acc;
+  }, []);
+  return children;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -376,7 +383,7 @@ describe('Testing challenge 10', () => {
   });
 });
 
-xdescribe('Testing challenge 11', () => {
+describe('Testing challenge 11', () => {
   test('It should return an array containing the names of the children', () => {
     expect(extractChildren(characters)).toStrictEqual([ 'Robb', 'Sansa', 'Arya', 'Bran', 'Rickon', 'Drogon', 'Rhaegal', 'Viserion', 'Margaery', 'Loras' ]);
     expect(extractChildren(characters).length).toStrictEqual(10);

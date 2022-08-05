@@ -239,7 +239,7 @@ const removeVowels = (str) => {
   const vowels = ['A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u'];
   for (let i = 0; i < noVowels.length; i++) {
     if (vowels.includes(noVowels[i])) {
-      noVowels.splice(i,1);
+      noVowels.splice(i, 1);
       i--;
     }
   }
@@ -257,7 +257,18 @@ Similarly, extractVowels('The quick brown fox') returns ['Th qck brwn fx', 'eioo
 ------------------------------------------------------------------------------------------------ */
 
 const extractVowels = (str) => {
-  // Solution code here...
+  let removedLetters = [];
+  let noVowels = str.split('');
+  const vowels = ['A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u'];
+  for (let i = 0; i < noVowels.length; i++) {
+    if (vowels.includes(noVowels[i])) {
+      let letter = noVowels.splice(i, 1);
+      removedLetters.push(letter);
+      i--;
+    }
+  }
+  removedLetters.sort();
+  return [noVowels.join(''), removedLetters.join('')];
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -373,7 +384,7 @@ describe('Testing challenge 12', () => {
   });
 });
 
-xdescribe('Testing challenge 13', () => {
+describe('Testing challenge 13', () => {
   test('It should return the string without vowels', () => {
     expect(extractVowels('gregor')).toStrictEqual(['grgr', 'eo']);
     expect(extractVowels('gregor').length).toStrictEqual(2);

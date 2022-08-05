@@ -24,7 +24,7 @@ let starWarsPeople = [
   },
 ];
 
-const sortStarWarsCharacters = (starWarsArr) => starWarsArr.sort((a,b) => b.height - a.height);
+const sortStarWarsCharacters = (starWarsArr) => starWarsArr.sort((a, b) => b.height - a.height);
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
@@ -125,7 +125,7 @@ const gruffaloCrumble = {
 const listFoods = (recipe) => {
   let result = [];
   for (let item of recipe.ingredients) {
-    let idx = item.indexOf(' ', item.indexOf(' ')+1)+1;
+    let idx = item.indexOf(' ', item.indexOf(' ') + 1) + 1;
     result.push(item.slice(idx));
   }
   return result;
@@ -179,9 +179,9 @@ For example:
 ------------------------------------------------------------------------------------------------ */
 
 const removeEvenValues = (arr) => {
-  for(let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     if (arr[i] % 2 === 0) {
-      arr.splice(i,1);
+      arr.splice(i, 1);
       i--;
     }
   }
@@ -210,7 +210,7 @@ const removeLastCharacters = (str, numberOfCharacters) => {
     return str;
   }
   else {
-    return str.slice(0, str.length-numberOfCharacters);
+    return str.slice(0, str.length - numberOfCharacters);
   }
 };
 
@@ -235,7 +235,15 @@ For example, removeVowels('gregor') returns 'grgr'.
 ------------------------------------------------------------------------------------------------ */
 
 const removeVowels = (str) => {
-  // Solution code here...
+  let noVowels = str.split('');
+  const vowels = ['A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u'];
+  for (let i = 0; i < noVowels.length; i++) {
+    if (vowels.includes(noVowels[i])) {
+      noVowels.splice(i,1);
+      i--;
+    }
+  }
+  return noVowels.join('');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -356,7 +364,7 @@ describe('Testing challenge 11', () => {
   });
 });
 
-xdescribe('Testing challenge 12', () => {
+describe('Testing challenge 12', () => {
   test('It should return the string without vowels', () => {
     expect(removeVowels('gregor')).toStrictEqual('grgr');
     expect(removeVowels('gregor').length).toStrictEqual(4);

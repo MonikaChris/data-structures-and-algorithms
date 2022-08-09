@@ -125,8 +125,8 @@ Write a function named citiesAtoJ that takes in an array of city names and uses 
 ------------------------------------------------------------------------------------------------ */
 
 function citiesAtoJ(arr) {
-  // Solution code here...
-}
+  return arr.filter(city => (/\b[A-J]\w*/).test(city.split(' ')[0]));
+};
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7 - Stretch Goal

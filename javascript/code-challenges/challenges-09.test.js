@@ -60,7 +60,11 @@ HR has asked you to change the data to make it easier to print so that it looks 
 ------------------------------------------------------------------------------------------------ */
 
 const updateNumbers = (obj) => {
-  // Solution code here...
+  let numbers = [];
+  for(let name in obj) {
+    numbers.push(`${name}: ${obj[name]}`);
+  }
+  return numbers;
 };
 
 

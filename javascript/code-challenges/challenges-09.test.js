@@ -161,7 +161,19 @@ The input and output of this function are the same as the input and output from 
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenEntries = (arr, character) => {
-  // Solution code here...
+  let chars = arr.reduce((acc, curVal) => {
+    acc[curVal.name] = curVal.children;
+    return acc;
+  }, {});
+
+  for (let person of Object.entries(chars)) {
+    if (person[0] === character) {
+      if(Array.isArray(person[1])) {
+        return true;
+      }
+    }
+  }
+  return false;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -280,7 +292,7 @@ describe('Testing challenge 6', () => {
   });
 });
 
-xdescribe('Testing challenge 7', () => {
+describe('Testing challenge 7', () => {
   test('It should return true for characters that have children', () => {
     expect(hasChildrenEntries(characters, 'Eddard')).toBeTruthy();
   });

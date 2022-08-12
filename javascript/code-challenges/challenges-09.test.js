@@ -183,7 +183,18 @@ Write a function named totalCharacters that takes in an array and returns the nu
 ------------------------------------------------------------------------------------------------ */
 
 const totalCharacters = (arr) => {
-  // Solution code here...
+  return arr.reduce((acc, curVal) => {
+    if('name' in curVal) {
+      acc = acc + 1;
+    }
+    if('spouse' in curVal && curVal.spouse !== null) {
+      acc = acc + 1;
+    }
+    if('children' in curVal) {
+      acc = acc + curVal.children.length;
+    }
+    return acc;
+  }, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -302,7 +313,7 @@ describe('Testing challenge 7', () => {
   });
 });
 
-xdescribe('Testing challenge 8', () => {
+describe('Testing challenge 8', () => {
   test('It should return the number of characters in the array', () => {
     expect(totalCharacters(characters)).toStrictEqual(27);
   });

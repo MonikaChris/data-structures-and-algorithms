@@ -209,7 +209,22 @@ For example: [{ house: 'Stark', members: 7 }, { house: 'Arryn', members: 3 }, ..
 
 const houseSize = (arr) => {
   const sizes = [];
-  // Solution code here...
+  arr.forEach(object => {
+    let houseObj = {
+      house: object.house,
+      members: Object.entries(object).reduce((acc, curVal) => {
+        if ((!Array.isArray(curVal[1])) && (curVal[0] !== 'house')) {
+          acc = acc + 1;
+        }
+        if (Array.isArray(curVal[1])) {
+          acc = acc + curVal[1].length;
+        }
+        return acc;
+      }, 0)
+    };
+    sizes.push(houseObj);
+  });
+
   return sizes;
 };
 
@@ -319,7 +334,7 @@ describe('Testing challenge 8', () => {
   });
 });
 
-xdescribe('Testing challenge 9', () => {
+describe('Testing challenge 9', () => {
   test('It should return an object for each house containing the name and size', () => {
     expect(houseSize(characters)[1]).toStrictEqual({ house: 'Arryn', members: 3 });
     expect(houseSize(characters).length).toStrictEqual(7);

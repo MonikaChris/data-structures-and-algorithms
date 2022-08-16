@@ -191,8 +191,17 @@ For example, the following input returns a product of 720: [[1,2], [3,4], [5,6]]
 ------------------------------------------------------------------------------------------------ */
 
 const calculateProduct = (numbers) => {
-  return numbers.map(nums => nums.reduce((acc, curVal) => acc * curVal, 1)).reduce((acc, curVal) => acc * curVal, 1);
+  let product = 1;
+  for (let i = 0; i < numbers.length; i++) {
+    for (let j = 0; j<numbers[i].length; j++) {
+      product *= numbers[i][j];
+    }
+  }
+  return product;
 };
+
+//One-line solution:
+// return numbers.map(nums => nums.reduce((acc, curVal) => acc * curVal, 1)).reduce((acc, curVal) => acc * curVal, 1);
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 9 - Stretch Goal
@@ -211,7 +220,13 @@ const weeklyTemperatures = [
 ];
 
 const averageDailyTemperature = (weather) => {
-  // Solution code here...
+  let weekAvg = 0;
+  for (let i = 0; i < weather.length; i++) {
+    for (let j = 0; j < weather[i].length; j++) {
+      weekAvg += weather[i][j];
+    }
+  }
+  return weekAvg/(weather.length* weather[0].length);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -347,7 +362,7 @@ describe('Testing challenge 8', () => {
   });
 });
 
-xdescribe('Testing challenge 9', () => {
+describe('Testing challenge 9', () => {
   test('It should calculate and return the average temperature of the data set', () => {
     expect(averageDailyTemperature(weeklyTemperatures)).toStrictEqual(60.25);
   });

@@ -1,5 +1,7 @@
 'use strict';
 
+const { map } = require("cheerio/lib/api/traversing");
+
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1 - Review
 
@@ -138,8 +140,22 @@ const errands = [
 ];
 
 const howManyTreats = (arr) => {
-  // Solution code here...
+  let treats = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if(arr[i].store === 'Pet store') {
+      for (let j=0; j < arr[i].items.length; j++) {
+        if (arr[i].items[j].name === 'Treats') {
+          treats = arr[i].items[j].quantity;
+          break;
+        }
+      }
+    }
+  }
+  return treats;
 };
+
+//Misunderstood assignment at first - this one-liner returns total number of items to buy from all stores
+//return arr.map(object => object.items.map(item => item.quantity)).map(numArr => numArr.reduce((acc, curVal) => acc + curVal)).reduce((acc,curVal) => acc + curVal);
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7 - Stretch Goal

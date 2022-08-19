@@ -33,7 +33,9 @@ For example, count(5, [[1, 3, 5, 7, 9], [5, 5, 5], [1, 2, 3]]) returns 4.
 ------------------------------------------------------------------------------------------------ */
 
 const count = (target, input) => {
-  // Solution code here...
+  return input.map(list => list
+    .filter(num => parseInt(num) === parseInt(target)))
+    .map(item => item.reduce(acc => acc + 1,0)).reduce((acc,curVal) => acc + curVal, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------

@@ -149,7 +149,18 @@ For example, ['Tuesday', 'Monday', 'Wednesday and Thursday', 'Tuesday 2', 'Thurs
 const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 const sortByDay = (arr) => {
-  // Solution code here...
+  //Initialize array of empty arrays
+  //const byDayArr = new Array(daysOfWeek.length).fill([]); Something super weird with this line, seemed to return an array of empty arrays, but 'push' adds to every inner array, so had to initialize array of arrays manually
+  const byDayArr = [[], [], [], [], [], [], []];
+
+  for(let i = 0; i < arr.length; i++) {
+    for(let j = 0; j < daysOfWeek.length; j++) {
+      if(arr[i].includes(daysOfWeek[j])){
+        byDayArr[j].push(arr[i]);
+      }
+    }
+  }
+  return byDayArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -273,7 +284,7 @@ describe('Testing challenge 9', () => {
   });
 });
 
-xdescribe('Testing challenge 10', () => {
+describe('Testing challenge 10', () => {
   test('It should sort events by the day on which they happen', () => {
     const events = ['Dancing on Mondays and Tuesdays', 'Meet the inventors! Monday, August 7', 'in the club on a Tuesday', 'Thursday Night Code', 'Saturday Night Fever'];
     const sortedEvents = sortByDay(events);

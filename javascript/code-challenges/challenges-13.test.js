@@ -1,5 +1,7 @@
 'use strict';
 
+const { map } = require("cheerio/lib/api/traversing");
+
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1 - Review
 
@@ -78,7 +80,8 @@ Write a function named allHappy that takes in an array of strings and returns a 
 ------------------------------------------------------------------------------------------------ */
 
 const allHappy = (arr) => {
-  // Solution code here...
+  const happyBool = arr.map(word => word.includes(':)'));
+  return !happyBool.includes(false);
 };
 
 /* ------------------------------------------------------------------------------------------------

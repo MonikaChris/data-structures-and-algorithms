@@ -169,8 +169,41 @@ Here is a sample board:
 ------------------------------------------------------------------------------------------------ */
 
 const detectTicTacToeWin = (board) => {
-  // Solution code here...
+  const boardSize = 3;
+  //Diagonals
+  const mainDiag = [];
+  const crossDiag = [];
+
+  for (let i = 0; i < boardSize; i++) {
+    //Rows and Cols
+    const checkRows = [];
+    const checkCols = [];
+
+    mainDiag.push(i, i);
+    crossDiag.push(boardSize - 1 - i, i);
+
+    for (let j = 0; j < boardSize; j++) {
+      checkRows.push(i, j);
+      checkCols.push(j, i);
+    }
+    if (helpCheck(board, ...checkRows)) return true;
+    if (helpCheck(board, ...checkCols)) return true;
+  }
+  if(helpCheck(board, ...mainDiag)) return true;
+  if(helpCheck(board, ...crossDiag)) return true;
+
+  return false;
 };
+
+const helpCheck = (board, row1, col1, row2, col2, row3, col3) => {
+  if (board[row1][col1] === '' || board[row2][col2] === '' || board[row3][col3] === '') return false;
+
+  if (board[row1][col1] === board[row2][col2] && board[row2][col2] === board[row3][col3] && board[row1][col1] === board[row3][col3]) return true;
+
+  else return false;
+};
+
+
 
 /* ------------------------------------------------------------------------------------------------
 TESTS

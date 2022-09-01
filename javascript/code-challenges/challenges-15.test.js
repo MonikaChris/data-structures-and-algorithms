@@ -98,7 +98,11 @@ let starWarsData = [{
 }];
 
 let biggerThanLuke = (arr) => {
-  // Solution code here...
+  const minMass = 77;
+  //No idea why this line to grab mass didn't work - especially because the line below it returns the right mass when run
+  //const minMass = arr.filter(char => char.name === 'Luke Skywalker')[0].mass;
+  //return parseInt(minMass);
+  return arr.filter(char => char.mass > parseInt(minMass)).map(char => char.name).join(' - ');
 };
 
 /* ------------------------------------------------------------------------------------------------

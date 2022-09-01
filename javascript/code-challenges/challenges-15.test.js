@@ -23,7 +23,7 @@ For example, ['apple', 'banana', 'MacGyver'] returns ['Apple', 'Banana', 'MacGyv
 ------------------------------------------------------------------------------------------------ */
 
 const toTitleCase = (arr) => {
-  // Solution code here...
+  return arr.map(word => word.substring(0,1).toUpperCase() + word.substring(1));
 };
 
 /* ------------------------------------------------------------------------------------------------

@@ -23,7 +23,7 @@ For example, ['apple', 'banana', 'MacGyver'] returns ['Apple', 'Banana', 'MacGyv
 ------------------------------------------------------------------------------------------------ */
 
 const toTitleCase = (arr) => {
-  return arr.map(word => word.substring(0,1).toUpperCase() + word.substring(1));
+  return arr.map(word => word.substring(0, 1).toUpperCase() + word.substring(1));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -120,7 +120,17 @@ This data could be sorted by name or price.
 ------------------------------------------------------------------------------------------------ */
 
 const sortBy = (property, arr) => {
-  // Solution code here...
+  if (typeof arr[0][property] === 'number') {
+    return arr.sort((a, b) => a[property] - b[property]);
+  }
+  else {
+    return arr.sort((a, b) => {
+      if (a[property] > b[property]) {
+        return 1;
+      }
+      else return -1;
+    });
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------

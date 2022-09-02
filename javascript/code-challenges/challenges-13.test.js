@@ -8,16 +8,28 @@ CHALLENGE 1 - Review
 Write a function named longestString that takes in an array of strings and returns the index position of the longest string.
 ------------------------------------------------------------------------------------------------ */
 
-const longestString = (arr) => {
-  if(arr.length === 0) return -1;
 
-  return arr.reduce((acc, curVal, index) => {
-    if (curVal.length > arr[acc].length) {
-      acc = index;
-    }
-    return acc;
-  }, 0);
-};
+
+const longestString = (arr) => arr.reduce((acc, curVal, idx) => curVal.length > acc.val.length ? acc = {val: curVal, index: idx} : acc, {val: '', index: -1}).index;
+
+//These don't work - made me think indexOf was disallowed
+//const longestString = (arr) => arr.indexOf(arr.reduce((acc, curVal) => curVal.length > acc.length ? curVal : acc));
+//const longestString = (arr) => arr.indexOf('Tangerine');
+
+//But Ray's solution with initial value of '' for reduce does work, and it uses indexOf:
+//const longestString = (arr) => arr.indexOf(arr.reduce((acc, cVal) => cVal.length > acc.length ? cVal : acc, ''));
+
+//This was my original solution, but then as a class we tried to make a one liner - see above
+//const longestString = (arr) => {
+  //if(arr.length === 0) return -1;
+
+  //return arr.reduce((acc, curVal, index) => {
+    //if (curVal.length > arr[acc].length) {
+      //acc = index;
+    //}
+    //return acc;
+  //}, 0);
+//};
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
